@@ -10,6 +10,7 @@ require 'hutch/error_handlers/max_retry'
 
 # If ActiveJob is requried then required the adapter
 if defined?(ActiveJob)
+  require 'active_job/threshold'
   require 'active_job/queue_adapters/hutch_adapter'
 end
 

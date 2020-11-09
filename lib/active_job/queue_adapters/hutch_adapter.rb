@@ -51,6 +51,8 @@ module ActiveJob
       private
       
       def self.dynamic_consumer(job_instance)
+        clazz = job_instance.class
+
         Class.new do
           # don't include Hutch::Consumer, we should change the name of consumer to registe
           extend Hutch::Consumer::ClassMethods
@@ -60,6 +62,7 @@ module ActiveJob
           
           queue_name job_instance.queue_name
           consume HutchAdapter.routing_key(job_instance)
+          threshold clazz.threshold if clazz.threshold.present?
           
           def process(job_data)
             ActiveJob::Base.execute(job_data)
