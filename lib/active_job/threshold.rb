@@ -3,12 +3,12 @@ module ActiveJob
     extend ActiveSupport::Concern
 
     included do
-      class_attribute :threshold, default: nil
+      class_attribute :threshold_args, default: nil
     end
 
     module ClassMethods
       def threshold(args)
-        self.threshold = args
+        self.threshold_args = args
       end
     end
   end

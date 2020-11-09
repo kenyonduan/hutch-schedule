@@ -62,7 +62,7 @@ module ActiveJob
           
           queue_name job_instance.queue_name
           consume HutchAdapter.routing_key(job_instance)
-          threshold clazz.threshold if clazz.threshold.present?
+          threshold clazz.threshold_args if clazz.threshold_args.present?
           
           def process(job_data)
             ActiveJob::Base.execute(job_data)
