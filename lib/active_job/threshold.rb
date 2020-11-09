@@ -12,4 +12,8 @@ module ActiveJob
       end
     end
   end
+
+  class Base
+    include Threshold
+  end
 end
